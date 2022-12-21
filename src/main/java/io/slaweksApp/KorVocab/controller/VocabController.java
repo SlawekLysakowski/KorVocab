@@ -38,6 +38,10 @@ public class VocabController {
         return "redirect:/vocab/list";
     }
 
+    @GetMapping("/about")
+    public String getAboutView() {
+        return "about-vocab";
+    }
 
     @GetMapping("/list")
     public String getAllWordsView(Model model, Vocab vocab) throws ChangeSetPersister.NotFoundException {
