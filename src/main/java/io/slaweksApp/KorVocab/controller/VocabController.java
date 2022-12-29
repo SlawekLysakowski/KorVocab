@@ -76,7 +76,6 @@ public class VocabController {
         return "test-vocab";
     }
 
-
         @GetMapping("/new")
         public String createView(Model model) {
             model.addAttribute("newVocab", new Vocab());
@@ -87,10 +86,7 @@ public class VocabController {
         public String create(Vocab newVocab, Model model) throws ChangeSetPersister.NotFoundException {
             newVocab = vocabService.createVocab(newVocab);
             return "redirect:/list";
-
         }
-
-
 
         @GetMapping("/update")
         public String updateVocabView(@RequestParam Long id, Vocab vocab, Model model) throws ChangeSetPersister.NotFoundException {
@@ -104,7 +100,6 @@ public class VocabController {
             vocabService.updateVocab(vocab);
             return "redirect:/list";
         }
-
 
         @GetMapping("/delete")
         public String deleteVocabView(@RequestParam Long id, Model model) throws ChangeSetPersister.NotFoundException {
