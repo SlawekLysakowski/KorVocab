@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 
 body {
@@ -37,17 +36,11 @@ body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-column: 1 / 5;
-
-
-
 }
 
-
 #id-label, #jap-label, #kor-label, #eng-label, #pol-label {
-  /*display: grid;*/
   grid-column: 1 / 2;
   padding-top: 13px;
-
 }
 
 #edit-id, #japanese, #korean, #english, #polish {
@@ -65,6 +58,7 @@ body {
   display: grid;
   grid-row: 2 / 3;
 }
+
 #3 {
   display: grid;
   grid-row: 3 / 4;
@@ -73,13 +67,16 @@ body {
 #4 {
   display: grid;
   grid-row: 4 / 5;
-
 }
 
 #5 {
   display: grid;
   grid-row: 5 / 6;
+}
 
+.alert-danger {
+  color: #f33c3c;
+  font-size: 20px;
 }
 
 .form-control {
@@ -99,8 +96,6 @@ nav {
   justify-content: center;
   border-radius: 25px 25px 0 0;
 }
-
-
 
 a:link {
   color: #495057;
@@ -134,7 +129,6 @@ a:active {
 #control-panel {
   grid-column: 1 / 2;
   grid-row: 1 / 3;
-
 }
 
 #main-box {
@@ -144,9 +138,12 @@ a:active {
   align-content: center;
   margin-top: 20px;
 }
+
 .word-array-box {
   grid-column: 3 / 4;
   grid-row: 1 / 3;
+  letter-spacing: -1px;
+  line-height: 1.3;
 }
 
 #answer-box {
@@ -156,11 +153,16 @@ a:active {
   align-self: center;
 }
 
-
 #vocab-table {
-  display: grid;
   text-align: center;
-  grid-column: 2 / 4;
+}
+
+#list-buttons {
+  width: 106px;
+}
+
+#list-korean {
+  width: 150px;
 }
 
 #transDirection {
@@ -203,7 +205,6 @@ h2 {
 
 #answer {
   grid-column: 2 / 4;
-  align-self: center;
   align-self: center;
   justify-content: center;
 }
@@ -281,12 +282,14 @@ h2 {
   display: none;
   gap: 5px;
 }
+
 #polishWord {
   text-align: center;
   align-content: center;
   display: none;
   gap: 5px;
 }
+
 #translation,
 #showVocabList,
 #showVocabList:visited,
@@ -315,44 +318,6 @@ h2 {
   margin-bottom: 5px;
 }
 
-td {
-  height: 50px;
-  vertical-align: center;
-}
-
-#id {
-  display: grid;
-  grid-column: 1 / 2;
-  align-content: center;
-  border: 1px solid black;
-}
-
-#jap-vocab {
-  display: grid;
-  grid-column: 2 / 4;
-  align-content: center;
-  border: 1px solid black;
-}
-
-#kor-vocab {
-  display: grid;
-  grid-column: 4 / 6;
-  align-content: center;
-  border: 1px solid black;
-}
-#eng-vocab {
-  display: grid;
-  grid-column: 6 / 7;
-  align-content: center;
-  border: 1px solid black;
-}
-
-#pol-vocab {
-  display: grid;
-  grid-column: 7 / 8;
-  align-content: center;
-  border: 1px solid black;
-}
 
 #delete {
   justify-content: center;
@@ -364,7 +329,6 @@ td {
 #text-container {
   display: flex;
   margin: 2% 2%;
-
 }
 
 #article {
@@ -381,8 +345,6 @@ td {
   #article {
     font-size: 10px;
   }
-
-
 }
 
 

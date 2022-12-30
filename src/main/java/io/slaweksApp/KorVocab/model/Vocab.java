@@ -1,6 +1,7 @@
 package io.slaweksApp.KorVocab.model;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
 
@@ -13,18 +14,22 @@ public class Vocab {
         @GeneratedValue
         private Long id;
 
+        @Valid
         @NotBlank(message = "New Vocabulary must not be blank")
         @Column(name = "Japanese", nullable = false)
         private String japanese;
 
+        @Valid
         @NotBlank(message = "New Vocabulary must not be blank")
         @Column(name = "Korean", nullable = false)
         private String korean;
 
+        @Valid
         @NotBlank(message = "New Vocabulary must not be blank")
         @Column(name = "English", nullable = false)
         private String english;
 
+        @Valid
         @NotBlank(message = "New Vocabulary must not be blank")
         @Column(name = "Polish", nullable = false)
         private String polish;

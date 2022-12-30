@@ -1,19 +1,18 @@
 package io.slaweksApp.KorVocab.controller;
 
-
 import io.slaweksApp.KorVocab.model.Vocab;
 import io.slaweksApp.KorVocab.service.VocabService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import javax.validation.Valid;
 import java.util.ArrayList;
-
 
 @Controller
 @RequestMapping("")
@@ -21,14 +20,18 @@ public class VocabController {
 
     @Autowired
     VocabService vocabService;
-
     public Vocab findVocab(long id) throws ChangeSetPersister.NotFoundException {
         return vocabService.getVocab(id);
     }
 
     @GetMapping("/get")
     public String getVocabView(@RequestParam Long id, Model model) throws ChangeSetPersister.NotFoundException {
-        model.addAttribute("vocab", vocabService.getVocab(id));
+        try {
+            model.addAttribute("vocab", vocabService.getVocab(id));
+        } catch  (ChangeSetPersister.NotFoundException e) {
+            e.printStackTrace();
+            return "404-vocab";
+        }
         return "get-vocab";
     }
 
@@ -68,7 +71,6 @@ public class VocabController {
             englishWords.add(v.getEnglish());
             polishWords.add(v.getPolish());
         }
-
         model.addAttribute("japaneseWords", japaneseWords);
         model.addAttribute("koreanWords", koreanWords);
         model.addAttribute("englishWords", englishWords);
@@ -83,21 +85,40 @@ public class VocabController {
         }
 
         @PostMapping("/new")
-        public String create(Vocab newVocab, Model model) throws ChangeSetPersister.NotFoundException {
+        public String create(@Valid Vocab newVocab, BindingResult bindingResult, Model model) throws ChangeSetPersister.NotFoundException {
+            if(bindingResult.hasErrors()) {
+                model.addAttribute(newVocab);
+                model.addAttribute("org.springframework.validation.BindingResult.newVocab", bindingResult);
+                return "create-vocab";
+            }
             newVocab = vocabService.createVocab(newVocab);
             return "redirect:/list";
         }
 
         @GetMapping("/update")
         public String updateVocabView(@RequestParam Long id, Vocab vocab, Model model) throws ChangeSetPersister.NotFoundException {
-
-            model.addAttribute("updateVocab", vocabService.getVocab(id));
+            try {
+                model.addAttribute("updateVocab", vocabService.getVocab(id));
+            } catch  (ChangeSetPersister.NotFoundException e) {
+                e.printStackTrace();
+                return "404-vocab";
+            }
             return "update-vocab";
         }
 
         @PostMapping("/update")
-        public String updateVocab(Vocab vocab, Model model) throws ChangeSetPersister.NotFoundException {
-            vocabService.updateVocab(vocab);
+        public String updateVocab(@Valid Vocab updateVocab, BindingResult bindingResult, Model model) throws ChangeSetPersister.NotFoundException {
+            if(bindingResult.hasErrors()) {
+                model.addAttribute(updateVocab);
+                model.addAttribute("org.springframework.validation.BindingResult.updateVocab", bindingResult);
+                return "redirect:/update?id=" + updateVocab.getId();
+            }
+            try {
+                updateVocab = vocabService.updateVocab(updateVocab);
+            } catch (ChangeSetPersister.NotFoundException e) {
+                e.printStackTrace();
+                return "redirect:/update?id=" + updateVocab.getId() ;
+            }
             return "redirect:/list";
         }
 
@@ -111,6 +132,8 @@ public class VocabController {
             vocabService.deleteVocab(vocab.getId());
             return "redirect:/list";
         }
-
-
+        @GetMapping("/error")
+        public String errorView(Model model) {
+        return "404-vocab";
+    }
 }
