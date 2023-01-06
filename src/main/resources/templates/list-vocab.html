@@ -16,7 +16,7 @@
 
   <table class="table" id="vocab-table">
     <tr>
-      <th>ID</th>
+      <th>No</th>
       <th>Japanese</th>
       <th>Korean</th>
       <th>English</th>
@@ -25,9 +25,9 @@
     <tr th:each="word, iStat : ${vocabs}"
         th:style="${iStat.odd}? 'background-color: #e8e8e8;'"
         th:attr="value = ${word.japanese}">
-<!--      th:alt-title="${iStat.even}? 'even' : 'odd'">-->
-      <td th:text="${word.id}"></td>
-      <td th:text="${word.japanese}"></td>
+<!--    <td th:text="${word.id}"></td>-->
+        <td th:text="${iStat.index +1}"></td>
+        <td th:text="${word.japanese}"></td>
       <td th:id="list-korean" th:text="${word.korean}" ></td>
       <td th:text="${word.english}" ></td>
       <td th:text="${word.polish}" ></td>

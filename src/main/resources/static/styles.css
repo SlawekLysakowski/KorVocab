@@ -19,6 +19,44 @@ body {
   background-color: white;
 }
 
+nav {
+  display: grid;
+  background-color: #99e9f2;
+  height: 70px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px 25px 0 0;
+}
+
+.app {
+  height: 70%;
+  display: grid;
+  grid-template-columns: 240px 1fr 270px;
+  grid-template-rows: repeat(2, 1fr);
+}
+
+#control-panel {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+}
+
+#main-box {
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+  text-align: center;
+  align-content: center;
+  margin-top: 20px;
+}
+
+.word-array-box {
+  grid-column: 3 / 4;
+  grid-row: 1 / 3;
+  letter-spacing: -1px;
+  line-height: 1.3;
+}
+
 #vocab-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -86,17 +124,6 @@ body {
   grid-column: 2 / 5;
 }
 
-nav {
-  display: grid;
-  background-color: #99e9f2;
-  height: 70px;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-flow: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 25px 25px 0 0;
-}
-
 a:link {
   color: #495057;
   text-decoration: none;
@@ -117,33 +144,6 @@ a:hover {
 a:active {
   background-color: black;
   font-style: italic;
-}
-
-.app {
-  height: 70%;
-  display: grid;
-  grid-template-columns: 240px 1fr 270px;
-  grid-template-rows: repeat(2, 1fr);
-}
-
-#control-panel {
-  grid-column: 1 / 2;
-  grid-row: 1 / 3;
-}
-
-#main-box {
-  grid-column: 2 / 3;
-  grid-row: 1 / 3;
-  text-align: center;
-  align-content: center;
-  margin-top: 20px;
-}
-
-.word-array-box {
-  grid-column: 3 / 4;
-  grid-row: 1 / 3;
-  letter-spacing: -1px;
-  line-height: 1.3;
 }
 
 #answer-box {
@@ -169,10 +169,6 @@ a:active {
   margin-top: 20px;
 }
 
-#current-word {
-  margin-top: 20px;
-}
-
 h2 {
   text-align: center;
 }
@@ -192,10 +188,12 @@ h2 {
   display: grid;
   grid-column: 2 / 4;
 }
+
 #feedback-cont {
   grid-column: 2 / 4;
   grid-row: 2 / 3;
 }
+
 #feedback {
   grid-column: 2 / 4;
   align-self: center;
@@ -227,6 +225,10 @@ h2 {
   height: 135px;
 }
 
+#current-display-word {
+  text-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+}
+
 .toggle  {
   position : relative ;
   display : flex;
@@ -237,6 +239,7 @@ h2 {
   border-radius: 15px;
   border: 2px solid black;
 }
+
 .toggle:hover,
 .toggle:active {
   cursor: pointer;
@@ -291,7 +294,7 @@ h2 {
 }
 
 #translation,
-#showVocabList,
+#showVocabList:link,
 #showVocabList:visited,
 #translation:visited {
   margin-top: 10px;
