@@ -2,7 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>test</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;1,400;1,500&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
   <link  th:href="@{/styles.css}" rel="stylesheet">
 </head>
 <body>
@@ -18,9 +22,7 @@
   <div id="control-panel">
     <p id="transDirection" class="panel-button">Translation: </p>
     <button id="translation" class="btn">JAP : KOR</button>
-
-    <button id="showVocabList" class="btn" onclick="location.href=`list`;">Show Vocabulary</button>
-
+<!--    <button id="showVocabList" class="btn" onclick="location.href=`list`;">Show Vocabulary</button>-->
     <p class="show-lang">Show English</p>
     <input type="checkbox" id="show-english"
            class="checkbox btn"/>
@@ -114,11 +116,11 @@
         wordIndex = japToKor ? japaneseWords.indexOf(randomWord) : koreanWords.indexOf(randomWord);
         document.getElementById('current-display-word').textContent = randomWord;
         // console.log(displayedWord.textContent.length)
-        if (displayedWord.textContent.length > 10) {
-          displayedWord.style.fontSize = `30px`;
-        } else {
-          displayedWord.style.fontSize = `50px`;
-        }
+        // if (displayedWord.textContent.length > 10) {
+        //   displayedWord.style.fontSize = `30px`;
+        // } else {
+        //   displayedWord.style.fontSize = `50px`;
+        // }
         // console.log(displayedWord.style.fontSize);
         answerKor = koreanWords[wordIndex];
         answerJpy = japaneseWords[wordIndex];
@@ -236,30 +238,30 @@
       });
 
       document.querySelector('#check').addEventListener('click', checkAnswer);
-
-      const appSizing = function () {
-        const wordsDiv = document.querySelector('.word-array-box');
-        const wordsDivHeight = wordsDiv.scrollHeight;
-        const heightRatio = wordsDivHeight / visualViewport.height;
-
-        console.log(wordsDivHeight, heightRatio)
-        wordsDiv.style.height = `${wordsDivHeight}px`;
-
-        if (heightRatio > 0.80) {
-          wordsDiv.style.height = `80%`;
-          wordsDiv.style.fontSize = `23px`
-        }
-        if (heightRatio < 0.50) {
-          wordsDiv.style.height = `70%`;
-          wordsDiv.style.fontSize = `45px`
-        }
-
-      }
+      //
+      // const appSizing = function () {
+      //   const wordsDiv = document.querySelector('.word-array-box');
+      //   const wordsDivHeight = wordsDiv.scrollHeight;
+      //   const heightRatio = wordsDivHeight / visualViewport.height;
+      //
+      //   console.log(wordsDivHeight, heightRatio)
+      //   wordsDiv.style.height = `${wordsDivHeight}px`;
+      //
+      //   if (heightRatio > 0.80) {
+      //     wordsDiv.style.height = `80%`;
+      //     wordsDiv.style.fontSize = `23px`
+      //   }
+      //   if (heightRatio < 0.50) {
+      //     wordsDiv.style.height = `70%`;
+      //     wordsDiv.style.fontSize = `45px`
+      //   }
+      //
+      // }
 
       window.onload = function () {
         newWordsArray(japaneseWords);
         newWord();
-        appSizing();
+        // appSizing();
         hideShowLang('show-polish', 'polishWord');
         hideShowLang('show-english', 'englishWord');
 

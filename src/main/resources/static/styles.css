@@ -4,15 +4,19 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 body {
   color: #495057;
-  font-family: sans-serif;
+  font-family: "Rubik", sans-serif;
   position: relative;
-  font-size: 25px;
+  font-size: 2.5rem;
 }
 
 #container {
-  margin: 30px auto;
+  margin: 3rem auto;
   width: 75%;
   border: 1px solid black;
   border-radius: 25px;
@@ -22,7 +26,7 @@ body {
 nav {
   display: grid;
   background-color: #99e9f2;
-  height: 70px;
+  height: 7rem;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-flow: column;
   align-items: center;
@@ -31,15 +35,16 @@ nav {
 }
 
 .app {
-  height: 70%;
+  height: 75%;
   display: grid;
-  grid-template-columns: 240px 1fr 270px;
+  grid-template-columns: 24rem 1fr 27rem;
   grid-template-rows: repeat(2, 1fr);
 }
 
 #control-panel {
   grid-column: 1 / 2;
   grid-row: 1 / 3;
+  padding-left: 1rem;
 }
 
 #main-box {
@@ -47,14 +52,16 @@ nav {
   grid-row: 1 / 3;
   text-align: center;
   align-content: center;
-  margin-top: 20px;
+  margin-top: 2rem;
 }
 
 .word-array-box {
   grid-column: 3 / 4;
   grid-row: 1 / 3;
   letter-spacing: -1px;
-  line-height: 1.3;
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 2rem 0;
 }
 
 #vocab-container {
@@ -78,7 +85,7 @@ nav {
 
 #id-label, #jap-label, #kor-label, #eng-label, #pol-label {
   grid-column: 1 / 2;
-  padding-top: 13px;
+  padding-top: 1.3rem;
 }
 
 #edit-id, #japanese, #korean, #english, #polish {
@@ -114,74 +121,68 @@ nav {
 
 .alert-danger {
   color: #f33c3c;
-  font-size: 20px;
+  font-size: 2rem;
 }
 
 .form-control {
   /*display: grid;*/
-  margin-left: 2px;
+  margin-left: 0.2rem;
   font-size: large;
   grid-column: 2 / 5;
 }
 
-a:link {
+a:link,
+a:visited {
   color: #495057;
   text-decoration: none;
   text-align: center;
+  padding: 0.1rem;
 }
 
-a:visited {
-  /* color: #777; */
-  color: #495057;
-}
-
-a:hover {
+a:hover,
+a:active {
   color: #f33c3c;
   font-weight: bold;
   text-decoration: underline #f33c3c;
 }
 
-a:active {
-  background-color: black;
-  font-style: italic;
-}
-
-#answer-box {
-  margin-top: 40px;
-  grid-row: 2 / 3;
-  text-align: center;
-  align-self: center;
-}
-
-#vocab-table {
-  text-align: center;
-}
-
-#list-buttons {
-  width: 106px;
-}
-
-#list-korean {
-  width: 150px;
-}
-
 #transDirection {
-  margin-top: 20px;
+  margin-top: 2rem;
 }
 
 h2 {
   text-align: center;
 }
 
+#answer-box {
+  display: flex;
+  margin-top: 40px;
+  grid-row: 2 / 3;
+  justify-content: center;
+}
+
 #enter-word {
   width: 60%;
-  height: 25px;
-  border: solid 3px ;
+  height: 30px;
+  padding: 0.5rem;
   background-color: #f5ebeb;
+  box-shadow: inset 0 0 0 3px #99e9f2;
+  border: none;
+  font-size: 2rem;
+  font-weight: 500;
+
+}
+
+#check {
+  height: 30px;
+  padding: 0.1rem;
 }
 
 ::placeholder {
+  color: rgba(243, 60, 60, 0.26);
   text-align: center;
+  font-size: 2.5rem;
+  align-self: center;
 }
 
 #display-cont {
@@ -207,10 +208,6 @@ h2 {
   justify-content: center;
 }
 
-#word-1 {
-  margin-top: 20px;
-}
-
 #correct {
   color: green;
   padding-top: 15px;
@@ -222,10 +219,11 @@ h2 {
 }
 
 .displayedWord {
-  height: 135px;
+  height: 13.5rem;
 }
 
 #current-display-word {
+  font-size: 5rem;
   text-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
 }
 
@@ -276,7 +274,7 @@ h2 {
 
 .show-lang {
   align-self: end;
-  margin-top: 10px;
+  margin-top: 1rem;
 }
 
 #englishWord {
@@ -294,22 +292,18 @@ h2 {
 }
 
 #translation,
-#showVocabList:link,
-#showVocabList:visited,
 #translation:visited {
-  margin-top: 10px;
+  margin-top: 1rem;
   width: 70%;
 }
 
 .btn:hover,
 .btn:active,
 #translation:hover,
-#showVocabList:hover,
-#showVocabList:active,
 #translation:active,
 #check:hover,
 #check:active {
-  font-weight: bold;
+  /*font-weight: bold;*/
   cursor: pointer;
   background-color: #b6b4b4;
 }
@@ -318,15 +312,15 @@ h2 {
   background-color: #e8e8e8;
   border: 1px solid black;
   border-radius: 3px;
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
 }
 
 
 #delete {
   justify-content: center;
   text-align: center;
-  font-size: 25px;
-  margin: 30px auto;
+  font-size: 2.5rem;
+  margin: 3rem auto;
 }
 
 #text-container {
@@ -334,21 +328,61 @@ h2 {
   margin: 2% 2%;
 }
 
+/* ABOUT */
+
 #article {
-  font-size: 19px;
+  font-size: 1.9rem;
 }
 
-@media all and (max-width: 1100px) {
+/* VOCAB LIST*/
+
+.table {
+  margin-bottom: 30px;
+}
+
+#vocab-table {
+  text-align: center;
+}
+
+#list-buttons {
+  width: 15rem;
+}
+
+#list-korean {
+  width: 15rem;
+}
+
+
+/* Below 1104 px */
+@media (max-width: 69em) {
+  html {
+    font-size: 50%;
+  }
+
   #container {
-    width: 100%;
+    width: 90%;
   }
   nav  {
     font-weight: bold;
   }
   #article {
-    font-size: 10px;
+    font-size: 1rem;
   }
 }
+/* Below 800 px */
+@media (max-width: 50em) {
+  html {
+    font-size: 40%;
+  }
+}
+/* Below 560 px */
+@media (max-width: 35em) {
+  html {
+    font-size: 30%;
+  }
 
-
+  #container {
+    width: 100%;
+  }
+}
 
