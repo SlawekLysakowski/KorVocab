@@ -8,21 +8,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;1,400;1,500&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
   <link  th:href="@{/styles.css}" rel="stylesheet">
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
 <div id="container">
 <nav>
-  <a href="/test">home</a>
-  <a href="/about">about</a>
-  <a href="/list">vocabulary list</a>
-  <a href="/new">Add vocab</a>
+  <a class="nav-link" href="/test">home</a>
+  <a class="nav-link" href="/about">about</a>
+  <a class="nav-link" href="/list">vocabulary list</a>
+  <a class="nav-link" href="/new">Add vocab</a>
+  <button class="btn-mobile-nav">
+    <ion-icon id="icon-mobile-options"name="settings-outline"></ion-icon>
+  </button>
+  <button class="btn-mobile-nav">
+  <ion-icon id="icon-mobileNav-open" name="menu-outline"></ion-icon>
+  <ion-icon id="icon-mobileNav-close" name="close-outline"></ion-icon>
+  </button>
 </nav>
 <div class="app">
 
   <div id="control-panel">
     <p id="transDirection" class="panel-button">Translation: </p>
     <button id="translation" class="btn">JAP : KOR</button>
-<!--    <button id="showVocabList" class="btn" onclick="location.href=`list`;">Show Vocabulary</button>-->
     <p class="show-lang">Show English</p>
     <input type="checkbox" id="show-english"
            class="checkbox btn"/>
@@ -63,7 +72,6 @@
   </div>
 
   <div class="word-array-box">
-
     <p id="word-1"></p>
     <p id="word-2"></p>
     <p id="word-3" ></p>
@@ -95,18 +103,17 @@
       let correctNbr = 0;
       let wrongNbr = 0;
       let japToKor = true;
-      let selected = [];
 
       document.getElementById('correct').textContent = `Correct answers: ${correctNbr}`;
       document.getElementById('wrong').textContent = `Wrong answers:\u00A0 ${wrongNbr}`;
-      const displayedWord = document.querySelector('#current-display-word');
+      const displayedWord = document.getElementById('current-display-word');
 
       const newWordsArray = function (vocab) {
         wordsArray = [...new Array(10)]
           .map(() => vocab[Math.round(Math.random() * vocab.length)]);
 
         updateWords();
-        // document.getElementById(`word-1`).style.color = '#ff4800';
+        document.getElementById(`word-1`).style.color = '#ff4800';
         return wordsArray;
       }
 
@@ -115,13 +122,6 @@
         let randomWord = wordsArray[newRandomNumber];
         wordIndex = japToKor ? japaneseWords.indexOf(randomWord) : koreanWords.indexOf(randomWord);
         document.getElementById('current-display-word').textContent = randomWord;
-        // console.log(displayedWord.textContent.length)
-        // if (displayedWord.textContent.length > 10) {
-        //   displayedWord.style.fontSize = `30px`;
-        // } else {
-        //   displayedWord.style.fontSize = `50px`;
-        // }
-        // console.log(displayedWord.style.fontSize);
         answerKor = koreanWords[wordIndex];
         answerJpy = japaneseWords[wordIndex];
         vocToTrimmedVocArr( answerKor, answerKorArr);
@@ -139,7 +139,6 @@
         if (wordsArray.length === 0) {
           document.querySelector('.word-array-box').style.height = '';
           newWordsArray(japToKor ? japaneseWords : koreanWords);
-          appSizing();
         }
         wordsArray.forEach((word, i) => {
 
@@ -158,7 +157,6 @@
         document.getElementById('translation').textContent = japToKor ? `KOR : JAP` : 'JAP : KOR';
         document.querySelector('.word-array-box').style.height = '';
         newWordsArray(japToKor ? japaneseWords : koreanWords);
-        appSizing();
         newWord();
       }
 
@@ -188,7 +186,6 @@
         setTimeout(function () {
           document.getElementById('feedback').textContent = ``;
           document.getElementById('answer').textContent = ``;
-
         }, 3500);
       };
 
@@ -213,18 +210,15 @@
             document.getElementById('answer').textContent = `${answerKor}`;
             wrongAnswer();
           }
-
         }
         if (!japToKor) {
           if (input === answerJpy || answerJpyArr.includes(input) && input !== "") {
-            // wordsArray.splice(wordsArray.indexOf(wordsArray[newRandomNumber]));
+            wordsArray.splice(wordsArray.indexOf(wordsArray[newRandomNumber]));
             wordsArray.splice(index, 1);
             updateWords();
             correctAnswer();
             if (wordsArray.length === 0) newWordsArray(koreanWords);
-
           } else {
-
             document.getElementById('feedback').textContent =
               `wrong answer! 😢  \r\n Correct answer was: `;
             document.getElementById('answer').textContent = `${answerJpy}`;
@@ -232,39 +226,35 @@
           }
         }
       };
-
-      document.querySelector('#enter-word').addEventListener('keypress', function (e) {
+      document.getElementById('enter-word').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') checkAnswer();
       });
 
       document.querySelector('#check').addEventListener('click', checkAnswer);
-      //
-      // const appSizing = function () {
-      //   const wordsDiv = document.querySelector('.word-array-box');
-      //   const wordsDivHeight = wordsDiv.scrollHeight;
-      //   const heightRatio = wordsDivHeight / visualViewport.height;
-      //
-      //   console.log(wordsDivHeight, heightRatio)
-      //   wordsDiv.style.height = `${wordsDivHeight}px`;
-      //
-      //   if (heightRatio > 0.80) {
-      //     wordsDiv.style.height = `80%`;
-      //     wordsDiv.style.fontSize = `23px`
-      //   }
-      //   if (heightRatio < 0.50) {
-      //     wordsDiv.style.height = `70%`;
-      //     wordsDiv.style.fontSize = `45px`
-      //   }
-      //
-      // }
+
+      const cotrolPanel = document.getElementById('control-panel');
+      const viewportWidth = window.innerWidth;
+      const isMobile = viewportWidth <= 560;
+      console.log(viewportWidth, isMobile);
+
+      const checkMobile = function () {
+        isMobile? cotrolPanel.classList.add('hidden') : cotrolPanel.classList.remove('hidden');
+      }
+
+
+      const showCtrlPanel = function () {
+        cotrolPanel.classList.toggle('hidden');
+        console.log('options btn activated');
+      };
+
+      document.getElementById('icon-mobile-options').addEventListener('click', showCtrlPanel);
 
       window.onload = function () {
         newWordsArray(japaneseWords);
         newWord();
-        // appSizing();
         hideShowLang('show-polish', 'polishWord');
         hideShowLang('show-english', 'englishWord');
-
+        checkMobile();
       }
 
     </script>
