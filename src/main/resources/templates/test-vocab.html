@@ -19,15 +19,17 @@
   <a class="nav-link" href="/about">about</a>
   <a class="nav-link" href="/list">vocabulary list</a>
   <a class="nav-link" href="/new">Add vocab</a>
-  <button class="btn-mobile-nav">
+
+  <button id="btn-mobile-options" class="btn-mobile">
     <ion-icon id="icon-mobile-options"name="settings-outline"></ion-icon>
   </button>
-  <button class="btn-mobile-nav">
+
+  <button id="btn-mobile-nav" class="btn-mobile">
   <ion-icon id="icon-mobileNav-open" name="menu-outline"></ion-icon>
-  <ion-icon id="icon-mobileNav-close" name="close-outline"></ion-icon>
+  <ion-icon id="icon-mobileNav-close" class="not-displayed" name="close-outline"></ion-icon>
   </button>
 </nav>
-<div class="app">
+<div id="app">
 
   <div id="control-panel">
     <p id="transDirection" class="panel-button">Translation: </p>
@@ -49,12 +51,23 @@
     <br>
   </div>
 
+
+
   <div id="main-box">
-    <div class="displayedWord">
-      <h1 id="current-display-word"></h1>
+
+    <div id="displayed-word-box">
+      <h1 id="displayed-word"></h1>
       <p id=englishWord></p>
       <p id=polishWord></p>
     </div>
+
+    <div id="mobile-nav" class="hidden">
+      <a class="mobile-nav-link" href="/test">home</a>
+      <a class="mobile-nav-link" href="/about">about</a>
+      <a class="mobile-nav-link" href="/list">vocabulary list</a>
+      <a class="mobile-nav-link" href="/new">Add vocab</a>
+    </div>
+
     <div id="answer-box">
       <input
               id="enter-word"
@@ -63,15 +76,15 @@
               autocomplete="off"
       >
       <input id='check' type="button" value="Check">
-
     </div>
-    <div id="feedback-cont">
+
+    <div id="feedback-box">
       <h2 id="feedback"></h2>
       <h2 id="answer"></h2>
     </div>
   </div>
 
-  <div class="word-array-box">
+  <div id="word-array-box">
     <p id="word-1"></p>
     <p id="word-2"></p>
     <p id="word-3" ></p>
@@ -106,7 +119,6 @@
 
       document.getElementById('correct').textContent = `Correct answers: ${correctNbr}`;
       document.getElementById('wrong').textContent = `Wrong answers:\u00A0 ${wrongNbr}`;
-      const displayedWord = document.getElementById('current-display-word');
 
       const newWordsArray = function (vocab) {
         wordsArray = [...new Array(10)]
@@ -121,7 +133,7 @@
         newRandomNumber = Math.trunc(Math.random() * wordsArray.length);
         let randomWord = wordsArray[newRandomNumber];
         wordIndex = japToKor ? japaneseWords.indexOf(randomWord) : koreanWords.indexOf(randomWord);
-        document.getElementById('current-display-word').textContent = randomWord;
+        document.getElementById('displayed-word').textContent = randomWord;
         answerKor = koreanWords[wordIndex];
         answerJpy = japaneseWords[wordIndex];
         vocToTrimmedVocArr( answerKor, answerKorArr);
@@ -151,11 +163,10 @@
         })
       }
 
-
       const switchTransDir = function () {
         japToKor = !japToKor;
         document.getElementById('translation').textContent = japToKor ? `KOR : JAP` : 'JAP : KOR';
-        document.querySelector('.word-array-box').style.height = '';
+        document.getElementById('word-array-box').style.height = '';
         newWordsArray(japToKor ? japaneseWords : koreanWords);
         newWord();
       }
@@ -232,22 +243,48 @@
 
       document.querySelector('#check').addEventListener('click', checkAnswer);
 
-      const cotrolPanel = document.getElementById('control-panel');
+      const controlPanel = document.getElementById('control-panel');
+      const mobileNav = document.getElementById('mobile-nav');
+      const displayedWordBox = document.getElementById('displayed-word-box');
+      const answerBox = document.getElementById('answer-box');
+      const iconMobNavOpen = document.getElementById('icon-mobileNav-open');
+      const iconMobNavClose = document.getElementById('icon-mobileNav-close');
       const viewportWidth = window.innerWidth;
       const isMobile = viewportWidth <= 560;
       console.log(viewportWidth, isMobile);
 
       const checkMobile = function () {
-        isMobile? cotrolPanel.classList.add('hidden') : cotrolPanel.classList.remove('hidden');
+        isMobile ? controlPanel.classList.add('hidden') : controlPanel.classList.remove('hidden');
       }
 
-
       const showCtrlPanel = function () {
-        cotrolPanel.classList.toggle('hidden');
+        controlPanel.classList.toggle('hidden');
+        displayedWordBox.classList.toggle('hidden')
+        answerBox.classList.toggle('hidden');
         console.log('options btn activated');
       };
 
+      const showMobileNav = function () {
+        displayedWordBox.classList.toggle('hidden');
+        answerBox.classList.toggle('hidden');
+        mobileNav.classList.toggle('hidden');
+        // controlPanel.classList.add('hidden');
+
+        if (iconMobNavClose.style.display==='grid') {
+          iconMobNavOpen.style.display='grid';
+          iconMobNavClose.style.display='none';
+          mobileNav.style.gap='0';
+
+        } else {
+          iconMobNavOpen.style.display='none';
+          iconMobNavClose.style.display='grid';
+          mobileNav.style.gap='10rem';
+        }
+      }
+
+
       document.getElementById('icon-mobile-options').addEventListener('click', showCtrlPanel);
+      document.getElementById('btn-mobile-nav').addEventListener('click', showMobileNav);
 
       window.onload = function () {
         newWordsArray(japaneseWords);
