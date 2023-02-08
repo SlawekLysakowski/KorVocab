@@ -117,6 +117,8 @@
       let wrongNbr = 0;
       let japToKor = true;
 
+      const displayedWord = document.getElementById('displayed-word');
+
       document.getElementById('correct').textContent = `Correct answers: ${correctNbr}`;
       document.getElementById('wrong').textContent = `Wrong answers:\u00A0 ${wrongNbr}`;
 
@@ -129,11 +131,16 @@
         return wordsArray;
       }
 
+      const checkLength = function () {
+        displayedWord.textContent.length > 4 ? displayedWord.style.fontSize='5rem' : displayedWord.style.fontSize='9rem';
+      }
+
       const newWord = function () {
         newRandomNumber = Math.trunc(Math.random() * wordsArray.length);
         let randomWord = wordsArray[newRandomNumber];
         wordIndex = japToKor ? japaneseWords.indexOf(randomWord) : koreanWords.indexOf(randomWord);
         document.getElementById('displayed-word').textContent = randomWord;
+        checkLength();
         answerKor = koreanWords[wordIndex];
         answerJpy = japaneseWords[wordIndex];
         vocToTrimmedVocArr( answerKor, answerKorArr);
@@ -270,13 +277,11 @@
         displayedWordBox.classList.toggle('hidden');
         answerBox.classList.toggle('hidden');
         mobileNav.classList.toggle('hidden');
-        // controlPanel.classList.add('hidden');
 
         if (iconMobNavClose.style.display==='grid') {
           iconMobNavOpen.style.display='grid';
           iconMobNavClose.style.display='none';
           mobileNav.style.gap='0';
-
         } else {
           iconMobNavOpen.style.display='none';
           iconMobNavClose.style.display='grid';
