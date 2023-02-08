@@ -190,10 +190,11 @@ h2 {
 #check {
   height: 30px;
   padding: 0.1rem;
+  /*color: #e8e8e8;*/
+  font-weight: 500;
 }
 
 ::placeholder {
-  /*color: rgba(243, 60, 60, 0.26);*/
   color: #495057;
   text-align: center;
   font-size: 2.5rem;
@@ -232,7 +233,6 @@ h2 {
 }
 
 #displayed-word {
-  font-size: 5rem;
   text-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
 }
 
@@ -303,7 +303,7 @@ h2 {
 #translation,
 #translation:visited {
   margin-top: 1rem;
-  width: 70%;
+  width: 180px;
 }
 
 .btn:hover,
@@ -312,7 +312,6 @@ h2 {
 #translation:active,
 #check:hover,
 #check:active {
-  /*font-weight: bold;*/
   cursor: pointer;
   background-color: #b6b4b4;
 }
@@ -418,11 +417,12 @@ h2 {
     width: 6rem;
     height: 6rem;
     border-radius: 50%;
-    transition: all 0.3s;
+    /*transition: all 0.3s;*/
   }
 
   .btn-mobile:hover,
   .btn-mobile:active {
+    cursor: pointer;
     box-shadow: 0 0 0 0.8rem rgba(230, 125, 34, 0.5);
   }
 
@@ -476,13 +476,9 @@ h2 {
     margin: 0 0 1.5rem 0;
   }
 
-  #displayed-word {
-    font-size: 9rem;
-  }
-
   #answer-box {
     display: flex;
-    margin-top: 1.5rem ;
+    margin: 2.5rem 0 0 0;
     grid-row: 3 / 4;
     justify-content: center;
   }
@@ -502,8 +498,18 @@ h2 {
     align-items: end;
     align-self: end;
     font-size: 5rem;
+    margin: 0;
   }
 
+  /*#translation {*/
+  /*  width: 30rem;*/
+  /*  height: 7rem;*/
+  /*}*/
+
+  /*#translation:hover {*/
+  /*  cursor: pointer;*/
+  /*  background-color: #495057;*/
+  /*}*/
 
 
 

@@ -132,7 +132,7 @@
       }
 
       const checkLength = function () {
-        displayedWord.textContent.length > 4 ? displayedWord.style.fontSize='5rem' : displayedWord.style.fontSize='9rem';
+        displayedWord.textContent.length > 7 ? displayedWord.style.fontSize='5rem' : displayedWord.style.fontSize='9rem';
       }
 
       const newWord = function () {
@@ -171,8 +171,9 @@
       }
 
       const switchTransDir = function () {
-        japToKor = !japToKor;
+        console.log('switched')
         document.getElementById('translation').textContent = japToKor ? `KOR : JAP` : 'JAP : KOR';
+        japToKor = !japToKor;
         document.getElementById('word-array-box').style.height = '';
         newWordsArray(japToKor ? japaneseWords : koreanWords);
         newWord();
@@ -214,7 +215,6 @@
         });
       };
 
-
       const checkAnswer = function () {
         let input = document.getElementById("enter-word").value;
         if (japToKor) {
@@ -229,6 +229,7 @@
             wrongAnswer();
           }
         }
+
         if (!japToKor) {
           if (input === answerJpy || answerJpyArr.includes(input) && input !== "") {
             wordsArray.splice(wordsArray.indexOf(wordsArray[newRandomNumber]));
@@ -244,6 +245,7 @@
           }
         }
       };
+
       document.getElementById('enter-word').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') checkAnswer();
       });
@@ -270,7 +272,6 @@
         controlPanel.classList.toggle('hidden');
         displayedWordBox.classList.toggle('hidden')
         answerBox.classList.toggle('hidden');
-        console.log('options btn activated');
       };
 
       const showMobileNav = function () {
