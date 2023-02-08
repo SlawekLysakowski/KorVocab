@@ -243,6 +243,8 @@
 
       document.querySelector('#check').addEventListener('click', checkAnswer);
 
+      // *** MOBILE *** //
+
       const controlPanel = document.getElementById('control-panel');
       const mobileNav = document.getElementById('mobile-nav');
       const displayedWordBox = document.getElementById('displayed-word-box');
@@ -279,9 +281,10 @@
           iconMobNavOpen.style.display='none';
           iconMobNavClose.style.display='grid';
           mobileNav.style.gap='10rem';
+          mobileNav.style.fontSize='5rem';
+          mobileNav.style.marginTop='10rem';
         }
       }
-
 
       document.getElementById('icon-mobile-options').addEventListener('click', showCtrlPanel);
       document.getElementById('btn-mobile-nav').addEventListener('click', showMobileNav);
