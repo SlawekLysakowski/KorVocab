@@ -32,8 +32,12 @@
 <div id="app">
 
   <div id="control-panel">
+    <div id="trans-dir-box">
     <p id="transDirection" class="panel-button">Translation: </p>
     <button id="translation" class="btn">JAP : KOR</button>
+    </div>
+    <br>
+    <div id="control-box">
     <p class="show-lang">Show English</p>
     <input type="checkbox" id="show-english"
            class="checkbox btn"/>
@@ -46,9 +50,12 @@
     <label for="show-polish" class="toggle">
       <p class="onOff">OFF ON</p>
     </label>
+      <div id="score-box">
     <p id="correct" class="nbr"></p>
     <p id="wrong" class="nbr"></p>
+      </div>
     <br>
+    </div>
   </div>
 
 
@@ -116,6 +123,9 @@
       let correctNbr = 0;
       let wrongNbr = 0;
       let japToKor = true;
+      const viewportWidth = window.innerWidth;
+      const isMobile = viewportWidth <= 560;
+
 
       const displayedWord = document.getElementById('displayed-word');
 
@@ -132,7 +142,13 @@
       }
 
       const checkLength = function () {
-        displayedWord.textContent.length > 7 ? displayedWord.style.fontSize='5rem' : displayedWord.style.fontSize='9rem';
+        if (isMobile) {
+          displayedWord.textContent.length > 7 ? displayedWord.style.fontSize='5rem' : displayedWord.style.fontSize='9rem';
+        } else {
+          displayedWord.textContent.length > 7 ? displayedWord.style.fontSize='2.5rem' : displayedWord.style.fontSize='5rem';
+
+        }
+
       }
 
       const newWord = function () {
@@ -260,16 +276,15 @@
       const answerBox = document.getElementById('answer-box');
       const iconMobNavOpen = document.getElementById('icon-mobileNav-open');
       const iconMobNavClose = document.getElementById('icon-mobileNav-close');
-      const viewportWidth = window.innerWidth;
-      const isMobile = viewportWidth <= 560;
+      const controlBox = document.getElementById('control-box');
       console.log(viewportWidth, isMobile);
 
       const checkMobile = function () {
-        isMobile ? controlPanel.classList.add('hidden') : controlPanel.classList.remove('hidden');
+        isMobile ? controlBox.classList.add('hidden') : controlBox.classList.remove('hidden');
       }
 
       const showCtrlPanel = function () {
-        controlPanel.classList.toggle('hidden');
+        controlBox.classList.toggle('hidden');
         displayedWordBox.classList.toggle('hidden')
         answerBox.classList.toggle('hidden');
       };
@@ -283,6 +298,7 @@
           iconMobNavOpen.style.display='grid';
           iconMobNavClose.style.display='none';
           mobileNav.style.gap='0';
+          mobileNav.style.fontSize='0.1rem';
         } else {
           iconMobNavOpen.style.display='none';
           iconMobNavClose.style.display='grid';
