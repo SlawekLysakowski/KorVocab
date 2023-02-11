@@ -36,8 +36,10 @@
     <p id="transDirection" class="panel-button">Translation: </p>
     <button id="translation" class="btn">JAP : KOR</button>
     </div>
+
     <br>
-    <div id="control-box">
+
+    <div id="control-box" class="hidden-control-panel">
     <p class="show-lang">Show English</p>
     <input type="checkbox" id="show-english"
            class="checkbox btn"/>
@@ -50,15 +52,14 @@
     <label for="show-polish" class="toggle">
       <p class="onOff">OFF ON</p>
     </label>
-      <div id="score-box">
+    </div>
+
+    <div id="score-box">
     <p id="correct" class="nbr"></p>
     <p id="wrong" class="nbr"></p>
       </div>
-    <br>
-    </div>
+
   </div>
-
-
 
   <div id="main-box">
 
@@ -126,7 +127,6 @@
       const viewportWidth = window.innerWidth;
       const isMobile = viewportWidth <= 560;
 
-
       const displayedWord = document.getElementById('displayed-word');
 
       document.getElementById('correct').textContent = `Correct answers: ${correctNbr}`;
@@ -143,12 +143,16 @@
 
       const checkLength = function () {
         if (isMobile) {
-          displayedWord.textContent.length > 7 ? displayedWord.style.fontSize='5rem' : displayedWord.style.fontSize='9rem';
+          displayedWord.textContent.length > 7 ?
+                  displayedWord.style.fontSize='5rem'
+                  :
+                  displayedWord.style.fontSize='9rem';
         } else {
-          displayedWord.textContent.length > 7 ? displayedWord.style.fontSize='2.5rem' : displayedWord.style.fontSize='5rem';
-
+          displayedWord.textContent.length > 7 ?
+                  displayedWord.style.fontSize='2.5rem'
+                  :
+                  displayedWord.style.fontSize='5rem';
         }
-
       }
 
       const newWord = function () {
@@ -166,9 +170,9 @@
         document.getElementById("enter-word").value = "";
         // console.log(wordsArray.indexOf(randomWord));
         updateWords();
-        highlightedWord = document.getElementById(`word-${wordsArray.indexOf(randomWord) + 1}`).style.color = '#ff4800';
+        highlightedWord = document.getElementById(`word-${wordsArray.indexOf(randomWord) + 1}`)
+                .style.color = '#ff4800';
       }
-
 
       const updateWords = function () {
         if (wordsArray.length === 0) {
@@ -200,7 +204,9 @@
       const hideShowLang = function (selectedSwitch, word) {
         document.getElementById(`${selectedSwitch}`).addEventListener("click", function () {
           let display = document.getElementById(`${word}`);
-          display.style.display === "grid" ? display.style.display = "none" : display.style.display = "grid";
+          display.style.display === "grid" ? display.style.display = "none"
+                  :
+                  display.style.display = "grid";
         })
       }
 
@@ -270,21 +276,29 @@
 
       // *** MOBILE *** //
 
-      const controlPanel = document.getElementById('control-panel');
       const mobileNav = document.getElementById('mobile-nav');
       const displayedWordBox = document.getElementById('displayed-word-box');
       const answerBox = document.getElementById('answer-box');
       const iconMobNavOpen = document.getElementById('icon-mobileNav-open');
       const iconMobNavClose = document.getElementById('icon-mobileNav-close');
       const controlBox = document.getElementById('control-box');
+      const wordArrayBox = document.getElementById('word-array-box');
+      const scoreBox = document.getElementById('score-box');
+      const transDirBox = document.getElementById('trans-dir-box');
+
       console.log(viewportWidth, isMobile);
 
       const checkMobile = function () {
-        isMobile ? controlBox.classList.add('hidden') : controlBox.classList.remove('hidden');
+        isMobile ? controlBox.classList.add('hidden-control-panel')
+                   :
+                   controlBox.classList.remove('hidden-control-panel');
       }
 
+      if (isMobile) checkMobile();
+
       const showCtrlPanel = function () {
-        controlBox.classList.toggle('hidden');
+
+        controlBox.classList.toggle('hidden-control-panel');
         displayedWordBox.classList.toggle('hidden')
         answerBox.classList.toggle('hidden');
       };
@@ -293,6 +307,9 @@
         displayedWordBox.classList.toggle('hidden');
         answerBox.classList.toggle('hidden');
         mobileNav.classList.toggle('hidden');
+        wordArrayBox.classList.toggle('hidden');
+        transDirBox.classList.toggle('hidden');
+        scoreBox.classList.toggle('hidden');
 
         if (iconMobNavClose.style.display==='grid') {
           iconMobNavOpen.style.display='grid';
@@ -310,6 +327,8 @@
 
       document.getElementById('icon-mobile-options').addEventListener('click', showCtrlPanel);
       document.getElementById('btn-mobile-nav').addEventListener('click', showMobileNav);
+
+      // *** ONLOAD *** //
 
       window.onload = function () {
         newWordsArray(japaneseWords);
