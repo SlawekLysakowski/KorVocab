@@ -429,13 +429,13 @@ h2 {
     width: 6rem;
     height: 6rem;
     border-radius: 50%;
-    /*transition: all 0.3s;*/
+    transition: all 0.4s;
   }
 
   .btn-mobile:hover,
   .btn-mobile:active {
     cursor: pointer;
-    box-shadow: 0 0 0 0.8rem rgba(230, 125, 34, 0.5);
+    box-shadow: 0 0 0 1rem rgba(230, 125, 34, 0.5);
   }
 
   #icon-mobile-options,
@@ -459,7 +459,7 @@ h2 {
   }
 
   #app {
-    height: 80%;
+    height: 85%;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
@@ -489,13 +489,13 @@ h2 {
 
   #displayed-word-box {
     grid-row: 2 / 3;
-    margin: 0 0 2.5rem 0;
+    margin: 0 0 3.5rem 0;
   }
 
   #englishWord,
   #polishWord {
-   font-size: 2rem;
-    padding: 1rem;
+   font-size: 3rem;
+    font-weight: 300;
   }
 
   #answer-box {
@@ -520,7 +520,7 @@ h2 {
     justify-self: center;
     align-items: end;
     align-self: end;
-    font-size: 3.5rem;
+    font-size: 4rem;
     margin: 0;
   }
 
@@ -540,7 +540,7 @@ h2 {
   }
 
   #score-box {
-    margin-top: 10rem;
+    margin-top: 13rem;
   }
 
 
