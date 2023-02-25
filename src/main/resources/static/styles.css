@@ -84,20 +84,20 @@ nav {
   margin: 2rem 0;
 }
 
-#vocab-container {
+#open-vocab-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(6, 1fr);
   padding: 0;
 }
 
-#edit-form {
+#create-vocab-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(6, 1fr);
 }
 
-.form-group, .open-group {
+.form-group, .open-vocab {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-column: 1 / 5;
@@ -114,27 +114,27 @@ nav {
   align-self: center;
 }
 
-#1 {
+#id-box {
   display: grid;
   grid-row: 1 / 2;
 }
 
-#2{
+#japanese-box{
   display: grid;
   grid-row: 2 / 3;
 }
 
-#3 {
+#korean-box {
   display: grid;
   grid-row: 3 / 4;
 }
 
-#4 {
+#english-box {
   display: grid;
   grid-row: 4 / 5;
 }
 
-#5 {
+#polish-box {
   display: grid;
   grid-row: 5 / 6;
 }
@@ -459,7 +459,7 @@ h2 {
   }
 
   #app {
-    height: 85%;
+    height: 89%;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
@@ -484,7 +484,6 @@ h2 {
     flex-direction: column;
     font-weight: 500;
     text-transform: uppercase;
-
   }
 
   #displayed-word-box {
@@ -494,13 +493,13 @@ h2 {
 
   #englishWord,
   #polishWord {
-   font-size: 3rem;
+    font-size: 3rem;
     font-weight: 300;
   }
 
   #answer-box {
     display: flex;
-    margin: 3.5rem 0 0 0;
+    margin: 4rem 0 0 0;
     grid-row: 3 / 4;
     justify-content: center;
   }
@@ -521,7 +520,7 @@ h2 {
     align-items: end;
     align-self: end;
     font-size: 4rem;
-    margin: 0;
+    margin: 0 0 3rem 0;
   }
 
   .not-displayed {
@@ -541,6 +540,15 @@ h2 {
 
   #score-box {
     margin-top: 13rem;
+  }
+
+  /* *** Open vocab ***  */
+
+  #open-vocab-container,
+  #edit-vocab-container,
+  #create-vocab-container {
+    height: 100%;
+    font-size: 5rem;
   }
 
 
