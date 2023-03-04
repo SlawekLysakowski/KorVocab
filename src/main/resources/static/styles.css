@@ -542,13 +542,14 @@ h2 {
     margin-top: 13rem;
   }
 
-  /* *** Open vocab ***  */
+  /* *** Open Edit Create vocab ***  */
 
   #open-vocab-container,
   #edit-vocab-container,
   #create-vocab-container {
-    height: 100%;
-    font-size: 5rem;
+    display: inline-block;
+    height: 90vh;
+    font-size: 6rem;
   }
 
 
