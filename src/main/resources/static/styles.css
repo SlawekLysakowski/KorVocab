@@ -547,9 +547,19 @@ h2 {
   #open-vocab-container,
   #edit-vocab-container,
   #create-vocab-container {
-    display: inline-block;
+    grid-row-gap: 10rem;
     height: 90vh;
-    font-size: 6rem;
+    font-size: 10rem;
+
+  }
+
+  #polish,
+  #english,
+  #korean,
+  #japanese {
+    height: 10rem;
+    font-size: 10rem;
+
   }
 
 
