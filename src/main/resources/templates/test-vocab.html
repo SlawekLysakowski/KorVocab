@@ -177,7 +177,6 @@
 
       const updateWords = function () {
         if (wordsArray.length === 0) {
-          document.querySelector('.word-array-box').style.height = '';
           newWordsArray(japToKor ? japaneseWords : koreanWords);
         }
         wordsArray.forEach((word, i) => {
@@ -205,9 +204,7 @@
       const hideShowLang = function (selectedSwitch, word) {
         document.getElementById(`${selectedSwitch}`).addEventListener("click", function () {
           let display = document.getElementById(`${word}`);
-          display.style.display === "grid" ? display.style.display = "none"
-                  :
-                  display.style.display = "grid";
+          display.style.display === "grid" ? display.style.display = "none" : display.style.display = "grid";
         })
       }
 
@@ -287,7 +284,7 @@
       const scoreBox = document.getElementById('score-box');
       const transDirBox = document.getElementById('trans-dir-box');
 
-      console.log(viewportWidth, isMobile);
+      // console.log(viewportWidth, isMobile);
 
       const checkMobile = function () {
         isMobile ? controlBox.classList.add('hidden-control-panel')
@@ -298,7 +295,6 @@
       if (isMobile) checkMobile();
 
       const showCtrlPanel = function () {
-
         controlBox.classList.toggle('hidden-control-panel');
         displayedWordBox.classList.toggle('hidden')
         answerBox.classList.toggle('hidden');
